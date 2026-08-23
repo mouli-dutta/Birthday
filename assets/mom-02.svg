@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fde8d0"/>
+      <stop offset="100%" style="stop-color:#f0c0a0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg2)"/>
+  <text x="200" y="230" text-anchor="middle" font-family="Georgia,serif" font-size="32" fill="#8c3a56" opacity="0.5">Memory</text>
+  <text x="200" y="300" text-anchor="middle" font-size="48">🌸</text>
+</svg>

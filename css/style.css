@@ -1,0 +1,912 @@
+/* ============================================
+   FOR YOU, MOM — Love Letter Website
+   ============================================ */
+
+/* ---------- CSS Variables ---------- */
+:root {
+  --blush: #f8e8e0;
+  --cream: #fdf6f0;
+  --warm-white: #fffaf5;
+  --soft-rose: #e8a0b4;
+  --rose: #d4768e;
+  --muted-burgundy: #8c3a56;
+  --deep-pink: #c2506a;
+  --gold: #c9a86c;
+  --text-dark: #4a2a3a;
+  --text-soft: #7a5a6a;
+  --overlay: rgba(80, 30, 50, 0.55);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Lato', 'Segoe UI', sans-serif;
+  --transition-page: 600ms ease;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Page System ---------- */
+.page {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-page), visibility 0s linear var(--transition-page);
+  z-index: 1;
+  background: center/cover no-repeat fixed;
+}
+
+.page:nth-of-type(odd) {
+  background-image: url('../assets/bkg1.png');
+}
+
+.page:nth-of-type(even) {
+  background-image: url('../assets/bkg2.png');
+}
+
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--transition-page), visibility 0s linear 0s;
+  z-index: 10;
+}
+
+.page.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.page-inner {
+  min-height: 100%;
+  padding: 60px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center-content {
+  justify-content: center;
+}
+
+/* ---------- Typography ---------- */
+.main-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: 600;
+  color: var(--muted-burgundy);
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
+  color: var(--text-soft);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.body-text {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  color: var(--text-soft);
+  text-align: center;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 20px;
+}
+
+.heart-inline {
+  display: inline-block;
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+}
+
+/* ---------- Fade-up Animations ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.page.active .fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.25s !important; }
+.delay-2 { transition-delay: 0.5s !important; }
+.delay-3 { transition-delay: 0.75s !important; }
+.delay-4 { transition-delay: 1s !important; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--soft-rose), var(--deep-pink));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(212, 118, 142, 0.35);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 28px rgba(212, 118, 142, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  backdrop-filter: blur(6px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+.btn-heart {
+  background: var(--warm-white);
+  color: var(--deep-pink);
+  border: 2px solid var(--soft-rose);
+  box-shadow: 0 2px 12px rgba(212, 118, 142, 0.2);
+}
+
+/* ---------- Photo Frames ---------- */
+.photo-frame {
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.circle-frame {
+  width: clamp(160px, 40vw, 240px);
+  height: clamp(160px, 40vw, 240px);
+  border-radius: 50%;
+  border: 5px solid rgba(255,255,255,0.8);
+  margin-bottom: 28px;
+}
+
+.glow-frame {
+  box-shadow: 0 0 40px rgba(232, 160, 180, 0.4), 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.rounded-frame {
+  width: clamp(120px, 30vw, 170px);
+  height: clamp(140px, 35vw, 200px);
+  border-radius: 12px;
+  border: 4px solid #fff;
+}
+
+.hero-frame {
+  width: clamp(220px, 60vw, 340px);
+  height: clamp(260px, 70vw, 400px);
+  border-radius: 20px;
+  border: 5px solid rgba(255,255,255,0.7);
+  margin-bottom: 28px;
+}
+
+.photo-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.tilt-left { transform: rotate(-3deg); }
+.tilt-right { transform: rotate(3deg); }
+
+/* ---------- Floating Hearts Background ---------- */
+#floating-hearts-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-heart {
+  position: absolute;
+  font-size: 14px;
+  opacity: 0;
+  animation: floatHeart linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatHeart {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0.5) rotate(0deg);
+  }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.15; }
+  100% {
+    opacity: 0;
+    transform: translateY(-10vh) scale(1) rotate(45deg);
+  }
+}
+
+/* ---------- Page Dots ---------- */
+.page-dots {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--soft-rose);
+  opacity: 0.35;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.dot.active {
+  opacity: 1;
+  transform: scale(1.35);
+  background: var(--deep-pink);
+}
+
+/* ---------- Music Button ---------- */
+.music-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 200;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--soft-rose);
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.music-btn:hover { transform: scale(1.1); }
+
+.music-icon {
+  font-size: 18px;
+  color: var(--deep-pink);
+  transition: opacity 0.3s;
+}
+
+.music-btn.playing .music-icon {
+  animation: pulse-music 1s ease infinite;
+}
+
+@keyframes pulse-music {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ---------- Page 2 — Heart Tap ---------- */
+.tap-heart-area {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+#heart-burst-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.burst-heart {
+  position: absolute;
+  font-size: 18px;
+  opacity: 1;
+  animation: burstUp 1s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes burstUp {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0.4);
+  }
+}
+
+.reveal-text,
+.reveal-btn {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+}
+
+.reveal-text.visible,
+.reveal-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.reveal-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 3.5vw, 1.2rem);
+  color: var(--muted-burgundy);
+  text-align: center;
+  margin-bottom: 16px;
+  max-width: 400px;
+}
+
+/* ---------- Page 3 — Polaroid Wall ---------- */
+.polaroid-wall {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 500px;
+  width: 100%;
+  margin-bottom: 28px;
+  padding: 0 8px;
+}
+
+.polaroid {
+  background: #fff;
+  padding: 10px 10px 32px;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.04);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+}
+
+.polaroid-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.polaroid-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-label {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+  cursor: pointer;
+}
+
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s ease, visibility 0s linear 0s;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 80vh;
+  text-align: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 65vh;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.lightbox-caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: #fff;
+  font-size: 1.1rem;
+  margin-top: 16px;
+  opacity: 0.9;
+}
+
+/* ---------- Page 4 — Message Cards ---------- */
+.message-cards {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  min-height: 200px;
+  margin: 24px 0;
+}
+
+.message-card {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0.5s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  border: 1px solid rgba(232,160,180,0.3);
+}
+
+.message-card.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0s;
+}
+
+.card-number {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--soft-rose);
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.message-card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  color: var(--muted-burgundy);
+  margin-bottom: 12px;
+}
+
+.message-card p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text-soft);
+  font-size: clamp(0.95rem, 3vw, 1.05rem);
+  line-height: 1.6;
+}
+
+/* ---------- Page 5 — Single Bouquet ---------- */
+.bouquet-wrapper {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.bouquet-single {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.bouquet-img {
+  width: clamp(240px, 60vw, 360px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 28px rgba(200,100,140,0.25));
+  transition: filter 0.5s ease;
+}
+
+/* Hotspot container overlays the image */
+.flower-hotspots {
+  position: absolute;
+  inset: 0;
+}
+
+.flower-spot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 3;
+}
+
+.spot-ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(2px);
+  animation: spotPulse 2s ease-in-out infinite;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flower-spot:hover .spot-ring {
+  transform: scale(1.15);
+  background: rgba(255,255,255,0.3);
+}
+
+@keyframes spotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+}
+
+.flower-spot.tapped .spot-ring {
+  background: rgba(255,210,230,0.5);
+  border-color: rgba(255,255,255,0.9);
+  box-shadow: 0 0 16px rgba(255,180,210,0.6);
+  animation: none;
+}
+
+.flower-word {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  font-family: var(--font-serif);
+  font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  text-shadow: 0 1px 6px rgba(140,58,86,0.6), 0 0 12px rgba(232,160,180,0.4);
+  pointer-events: none;
+}
+
+.flower-spot.tapped .flower-word {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Glowing sparkles around bouquet */
+.bouquet-sparkles {
+  position: absolute;
+  inset: -60px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.bouquet-star {
+  position: absolute;
+  animation: starGlow ease-in-out infinite alternate;
+}
+
+.bouquet-star svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+@keyframes starGlow {
+  0% {
+    opacity: 0.1;
+    transform: scale(0.4) rotate(0deg);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2) rotate(25deg);
+    filter: blur(0px);
+  }
+}
+
+.bouquet-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  pointer-events: none;
+  text-align: center;
+}
+
+.bouquet-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ---------- Page 6 — Personal Message ---------- */
+.personal-message {
+  text-align: center;
+  max-width: 440px;
+  margin-bottom: 20px;
+}
+
+.msg-line {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 3.5vw, 1.15rem);
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.msg-line.highlight {
+  font-weight: 600;
+  color: var(--muted-burgundy);
+  font-style: normal;
+}
+
+.msg-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.msg-continue {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.msg-continue.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- Page 7 — Cake & Fireworks ---------- */
+.cake-container {
+  margin: 20px 0 24px;
+}
+
+.cake-img {
+  width: clamp(200px, 50vw, 320px);
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
+}
+
+#fireworks-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 300;
+}
+
+.celebration-msg {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  pointer-events: none;
+  text-align: center;
+}
+
+.celebration-msg.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ---------- Confetti ---------- */
+#confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 400;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  opacity: 0.9;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+
+/* ---------- Page 8 — Final ---------- */
+.final-page {
+  position: relative;
+  padding: 0;
+}
+
+.final-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.final-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.final-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(80, 20, 40, 0.6) 0%,
+    rgba(60, 15, 30, 0.75) 50%,
+    rgba(40, 10, 25, 0.85) 100%
+  );
+}
+
+.final-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.final-content .main-title {
+  color: #fff;
+}
+
+.final-content .body-text {
+  color: rgba(255,255,255,0.85);
+}
+
+.final-love {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 16px 0 8px;
+}
+
+.final-birthday {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 768px) {
+  .page-inner {
+    padding: 80px 48px 60px;
+  }
+
+  .polaroid-wall {
+    grid-template-columns: repeat(2, 200px);
+    gap: 28px;
+  }
+
+  .photo-row {
+    gap: 28px;
+  }
+
+  .message-cards {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 400px) {
+  .polaroid-wall {
+    grid-template-columns: 1fr;
+    max-width: 240px;
+  }
+
+  .bouquet-img {
+    width: 200px;
+  }
+
+  .flower-spot {
+    width: 36px;
+    height: 36px;
+  }
+
+  .spot-ring {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* ---------- Scrollbar Styling ---------- */
+.page::-webkit-scrollbar {
+  width: 4px;
+}
+
+.page::-webkit-scrollbar-thumb {
+  background: var(--soft-rose);
+  border-radius: 10px;
+}
+
+.page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: var(--soft-rose);
+  color: #fff;
+}

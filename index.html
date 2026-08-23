@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You, Mom ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Music Toggle -->
+  <button id="music-toggle" class="music-btn" aria-label="Toggle music">
+    <span class="music-icon">♪</span>
+  </button>
+  <audio id="bg-music" loop>
+    <source src="audio/birthday-music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Page Dots Navigation -->
+  <div class="page-dots" id="page-dots"></div>
+
+  <!-- Floating Hearts Container -->
+  <div id="floating-hearts-bg"></div>
+
+  <!-- ===== PAGE 1 — The Opening ===== -->
+  <section class="page active" id="page-1">
+    <div class="page-inner center-content">
+      <div class="photo-frame circle-frame glow-frame">
+        <img src="assets/mom-01.svg" alt="Mom" />
+      </div>
+      <p class="subtitle fade-up delay-1">"There's someone I want to celebrate today…"</p>
+      <h1 class="main-title fade-up delay-2">My Mom <span class="heart-inline">❤️</span></h1>
+      <button class="btn btn-primary fade-up delay-3" onclick="goToPage(2)">
+        Open Your Surprise →
+        <span class="btn-hearts"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 2 — "This Is For You" ===== -->
+  <section class="page" id="page-2">
+    <div class="page-inner center-content">
+      <h1 class="main-title fade-up">Happy Birthday, Mom</h1>
+      <p class="body-text fade-up delay-1">
+        Today isn't just about celebrating another year.<br />
+        It's about celebrating the love, warmth, and kindness<br />
+        you've given me throughout my life.
+      </p>
+      <div class="photo-row fade-up delay-2">
+        <div class="photo-frame rounded-frame tilt-left">
+          <img src="assets/mom-02.svg" alt="Memory" />
+        </div>
+        <div class="photo-frame rounded-frame tilt-right">
+          <img src="assets/mom-03.svg" alt="Memory" />
+        </div>
+      </div>
+      <div class="tap-heart-area fade-up delay-2">
+        <button class="btn btn-heart" id="tap-heart-btn" onclick="tapHeart()">
+          Tap the Heart ❤️
+        </button>
+        <div id="heart-burst-container"></div>
+      </div>
+      <p class="reveal-text" id="heart-reveal-text">
+        "Because you deserve all the love in the world."
+      </p>
+      <button class="btn btn-primary reveal-btn" id="page2-continue" onclick="goToPage(3)">
+        Continue ❤️
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 3 — Memory Gallery ===== -->
+  <section class="page" id="page-3">
+    <div class="page-inner center-content">
+      <h1 class="main-title fade-up">Little Moments, Big Memories</h1>
+      <div class="polaroid-wall fade-up delay-1">
+        <div class="polaroid tilt-left" onclick="openPhoto(this)" data-caption="Where it all began ❤️">
+          <div class="polaroid-img"><img src="assets/memory-01.svg" alt="Memory" /></div>
+          <p class="polaroid-label">Home</p>
+        </div>
+        <div class="polaroid tilt-right" onclick="openPhoto(this)" data-caption="A beautiful day with you 🌸">
+          <div class="polaroid-img"><img src="assets/memory-02.svg" alt="Memory" /></div>
+          <p class="polaroid-label">A Memory</p>
+        </div>
+        <div class="polaroid tilt-left" onclick="openPhoto(this)" data-caption="Together, always 💕">
+          <div class="polaroid-img"><img src="assets/family-01.svg" alt="Memory" /></div>
+          <p class="polaroid-label">Always</p>
+        </div>
+        <div class="polaroid tilt-right" onclick="openPhoto(this)" data-caption="Your smile lights up my world ☀️">
+          <div class="polaroid-img"><img src="assets/mom-04.svg" alt="Memory" /></div>
+          <p class="polaroid-label">Sunshine</p>
+        </div>
+      </div>
+      <button class="btn btn-primary fade-up delay-2" onclick="goToPage(4)">Continue ❤️</button>
+    </div>
+
+    <!-- Photo Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closePhoto(event)">
+      <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="Memory" />
+        <p class="lightbox-caption" id="lightbox-caption"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 4 — "Things I Never Say Enough" ===== -->
+  <section class="page" id="page-4">
+    <div class="page-inner center-content">
+      <h1 class="main-title fade-up">Mom, there are some things I don't say often enough…</h1>
+      <div class="message-cards" id="message-cards">
+        <div class="message-card active" data-index="0">
+          <span class="card-number">01</span>
+          <h2>Thank you</h2>
+          <p>"For every little thing you did that I didn't notice at the time."</p>
+        </div>
+        <div class="message-card" data-index="1">
+          <span class="card-number">02</span>
+          <h2>You made home feel like home</h2>
+          <p>"Wherever you were, there was always a feeling of safety."</p>
+        </div>
+        <div class="message-card" data-index="2">
+          <span class="card-number">03</span>
+          <h2>You believed in me</h2>
+          <p>"Even on the days when I didn't believe in myself."</p>
+        </div>
+        <div class="message-card" data-index="3">
+          <span class="card-number">04</span>
+          <h2>I love you</h2>
+          <p>"More than these few words could ever explain."</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="reveal-next-btn" onclick="revealNextCard()">
+        Reveal next →
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 5 — "A Bouquet of Love" ===== -->
+  <section class="page" id="page-5">
+    <div class="page-inner center-content">
+      <h1 class="main-title fade-up">A Bouquet of Love</h1>
+      <div class="bouquet-wrapper fade-up delay-1">
+        <div class="bouquet-sparkles" id="bouquet-sparkles"></div>
+        <div class="bouquet-single" id="bouquet">
+          <img class="bouquet-img" src="assets/flower.png" alt="Bouquet" />
+        </div>
+      </div>
+      <p class="body-text fade-up delay-2">"And somehow, all these words still aren't enough to describe you."</p>
+      <button class="btn btn-primary fade-up delay-3" onclick="goToPage(6)">Continue ❤️</button>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 6 — Photo + Personal Message ===== -->
+  <section class="page" id="page-6">
+    <div class="page-inner center-content">
+      <div class="photo-frame hero-frame fade-up">
+        <img src="assets/mom-01.svg" alt="Mom" />
+      </div>
+      <div class="personal-message" id="personal-message">
+        <p class="msg-line" data-order="1">"If I could give you one thing today…"</p>
+        <p class="msg-line" data-order="2">"I would give you the ability to see yourself through my eyes."</p>
+        <p class="msg-line" data-order="3">"So you could see how loved you are."</p>
+        <p class="msg-line highlight" data-order="4">"How important you are."</p>
+        <p class="msg-line highlight" data-order="5">"And how grateful I am that you're my Mom."</p>
+      </div>
+      <button class="btn btn-primary msg-continue" id="page6-continue" onclick="goToPage(7)">Continue ❤️</button>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 7 — Birthday Surprise ===== -->
+  <section class="page" id="page-7">
+    <div class="page-inner center-content">
+      <h1 class="main-title fade-up">Okay Mom… make a wish 🎂</h1>
+      <div class="cake-container fade-up delay-1" id="cake-container">
+        <img src="assets/cake.png" alt="Birthday Cake" class="cake-img" />
+      </div>
+      <button class="btn btn-primary fade-up delay-2" id="wish-btn" onclick="makeWish()">
+        Make the Wish ✨
+      </button>
+      <div class="celebration-msg" id="celebration-msg">
+        <h2 class="main-title">"Happy Birthday to the most wonderful Mom ❤️"</h2>
+        <button class="btn btn-primary" onclick="goToPage(8)">One Last Thing… ❤️</button>
+      </div>
+      <canvas id="fireworks-canvas"></canvas>
+      <div id="confetti-container"></div>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 8 — The Final Love Letter ===== -->
+  <section class="page" id="page-8">
+    <div class="page-inner center-content final-page">
+      <div class="final-bg">
+        <img src="assets/mom-01.svg" alt="Mom" class="final-bg-img" />
+        <div class="final-overlay"></div>
+      </div>
+      <div class="final-content">
+        <h1 class="main-title fade-up">"One Last Thing…"</h1>
+        <p class="body-text fade-up delay-1">
+          No matter how old I get,<br />
+          a part of me will always be the child<br />
+          who just wants to make his Mom proud.
+        </p>
+        <p class="body-text fade-up delay-2">
+          "Thank you for being my home."
+        </p>
+        <h1 class="final-love fade-up delay-3">I Love You, Mom. ❤️</h1>
+        <p class="final-birthday fade-up delay-4">Happy Birthday.</p>
+        <button class="btn btn-secondary fade-up delay-4" onclick="resetAll()">Start Over ↺</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
