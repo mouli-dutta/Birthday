@@ -6,6 +6,7 @@
   <title>For You, Mom ❤️</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -31,10 +32,10 @@
       <div class="photo-frame circle-frame glow-frame">
         <img src="assets/mom-01.svg" alt="Mom" />
       </div>
-      <p class="subtitle fade-up delay-1">"There's someone I want to celebrate today…"</p>
-      <h1 class="main-title fade-up delay-2">My Mom <span class="heart-inline">❤️</span></h1>
+      <p class="subtitle fade-up delay-1">আজকে আমার সবচেয়ে special মানুষকে নিয়ে celebrate করতে চাই…</p>
+      <h1 class="main-title fade-up delay-2">আমার মা <span class="heart-inline">❤️</span></h1>
       <button class="btn btn-primary fade-up delay-3" onclick="goToPage(2)">
-        Open Your Surprise →
+        তোমার জন্য একটা ছোট্ট Surprise →
         <span class="btn-hearts"></span>
       </button>
     </div>
@@ -45,9 +46,9 @@
     <div class="page-inner center-content">
       <h1 class="main-title fade-up">Happy Birthday, Mom</h1>
       <p class="body-text fade-up delay-1">
-        Today isn't just about celebrating another year.<br />
-        It's about celebrating the love, warmth, and kindness<br />
-        you've given me throughout my life.
+        আজকের দিনটা শুধু তোমার birthday বলে special নয়।<br />
+        তুমি আমার জন্য যে এত কিছু করেছ, যে ভালোবাসা দিয়েছ,<br />
+        আজকের দিনটা আসলে সেই সবকিছুর জন্য Thank You বলার একটা ছোট্ট excuse।
       </p>
       <div class="photo-row fade-up delay-2">
         <div class="photo-frame rounded-frame tilt-left">
@@ -59,12 +60,12 @@
       </div>
       <div class="tap-heart-area fade-up delay-2">
         <button class="btn btn-heart" id="tap-heart-btn" onclick="tapHeart()">
-          Tap the Heart ❤️
+          এই Heart-এ Tap করো ❤️
         </button>
         <div id="heart-burst-container"></div>
       </div>
       <p class="reveal-text" id="heart-reveal-text">
-        "Because you deserve all the love in the world."
+        তুমি পৃথিবীর সব ভালোবাসা deserve করো, আর আমি চাই তুমি সবসময় হাসিখুশি থাকো।<br />
       </p>
       <button class="btn btn-primary reveal-btn" id="page2-continue" onclick="goToPage(3)">
         Continue ❤️
@@ -109,31 +110,31 @@
   <!-- ===== PAGE 4 — "Things I Never Say Enough" ===== -->
   <section class="page" id="page-4">
     <div class="page-inner center-content">
-      <h1 class="main-title fade-up">Mom, there are some things I don't say often enough…</h1>
+      <h1 class="main-title fade-up">Mom, তোমাকে কিছু কথা enough বলা হয় না…</h1>
       <div class="message-cards" id="message-cards">
         <div class="message-card active" data-index="0">
           <span class="card-number">01</span>
-          <h2>Thank you</h2>
-          <p>"For every little thing you did that I didn't notice at the time."</p>
+          <h2>Thank you ❤️</h2>
+          <p>আমার জন্য করা সেই অসংখ্য ছোট ছোট কাজগুলোর জন্য, যেগুলোর মূল্য হয়তো তখন বুঝিনি।</p>
         </div>
         <div class="message-card" data-index="1">
           <span class="card-number">02</span>
-          <h2>You made home feel like home</h2>
-          <p>"Wherever you were, there was always a feeling of safety."</p>
+          <h2>You Made Home, Home</h2>
+          <p>তুমি আমার safe and peaceful place.</p>
         </div>
         <div class="message-card" data-index="2">
           <span class="card-number">03</span>
-          <h2>You believed in me</h2>
-          <p>"Even on the days when I didn't believe in myself."</p>
+          <h2>You Always Believed in Me</h2>
+          <p>এমন দিনেও, যেদিন আমি নিজেই নিজের উপর believe করিনি।</p>
         </div>
         <div class="message-card" data-index="3">
           <span class="card-number">04</span>
-          <h2>I love you</h2>
-          <p>"More than these few words could ever explain."</p>
+          <h2>I love you ❤️</h2>
+          <p>এই কয়েকটা words কখনোই explain করতে পারবে না তুমি আমার কাছে কতটা important!</p>
         </div>
       </div>
       <button class="btn btn-primary" id="reveal-next-btn" onclick="revealNextCard()">
-        Reveal next →
+        Next →
       </button>
     </div>
   </section>
@@ -141,14 +142,14 @@
   <!-- ===== PAGE 5 — "A Bouquet of Love" ===== -->
   <section class="page" id="page-5">
     <div class="page-inner center-content">
-      <h1 class="main-title fade-up">A Bouquet of Love</h1>
+      <h1 class="main-title fade-up">A Bouquet for you 🌸</h1>
       <div class="bouquet-wrapper fade-up delay-1">
         <div class="bouquet-sparkles" id="bouquet-sparkles"></div>
         <div class="bouquet-single" id="bouquet">
           <img class="bouquet-img" src="assets/flower.png" alt="Bouquet" />
         </div>
       </div>
-      <p class="body-text fade-up delay-2">"And somehow, all these words still aren't enough to describe you."</p>
+      <p class="body-text fade-up delay-2">আর, এত কিছু বলার পরেও মনে হয়, তুমি কতটা special সেটা তোমাকে বোঝানোর জন্য words এখনও কম।</p>
       <button class="btn btn-primary fade-up delay-3" onclick="goToPage(6)">Continue ❤️</button>
     </div>
   </section>
@@ -160,11 +161,11 @@
         <img src="assets/mom-01.svg" alt="Mom" />
       </div>
       <div class="personal-message" id="personal-message">
-        <p class="msg-line" data-order="1">"If I could give you one thing today…"</p>
-        <p class="msg-line" data-order="2">"I would give you the ability to see yourself through my eyes."</p>
-        <p class="msg-line" data-order="3">"So you could see how loved you are."</p>
-        <p class="msg-line highlight" data-order="4">"How important you are."</p>
-        <p class="msg-line highlight" data-order="5">"And how grateful I am that you're my Mom."</p>
+        <p class="msg-line" data-order="1">আজ যদি তোমাকে একটা জিনিস দিতে পারতাম…</p>
+        <p class="msg-line" data-order="2">তাহলে তোমাকে আমার চোখ দিয়ে নিজেকে দেখার একটা chance দিতাম।</p>
+        <p class="msg-line" data-order="3">তাহলে তুমি দেখতে পেতে, তুমি কতটা loved।</p>
+        <p class="msg-line highlight" data-order="4">তুমি আমার কাছে কতটা important।</p>
+        <p class="msg-line highlight" data-order="5">আর আমি কতটা lucky যে তুমি আমার Mom ❤️</p>
       </div>
       <button class="btn btn-primary msg-continue" id="page6-continue" onclick="goToPage(7)">Continue ❤️</button>
     </div>
@@ -173,7 +174,7 @@
   <!-- ===== PAGE 7 — Birthday Surprise ===== -->
   <section class="page" id="page-7">
     <div class="page-inner center-content">
-      <h1 class="main-title fade-up">Okay Mom… make a wish 🎂</h1>
+      <h1 class="main-title fade-up">Okay Mom… এবার একটা Wish করো 🎂</h1>
       <div class="cake-container fade-up delay-1" id="cake-container">
         <img src="assets/cake.png" alt="Birthday Cake" class="cake-img" />
       </div>
@@ -199,9 +200,9 @@
       <div class="final-content">
         <h1 class="main-title fade-up">"One Last Thing…"</h1>
         <p class="body-text fade-up delay-1">
-          No matter how old I get,<br />
-          a part of me will always be the child<br />
-          who just wants to make his Mom proud.
+          আমি যতই বড় হয়ে যাই না কেন,<br />
+          আমার একটা part সবসময় সেই ছোট্ট শিশুটাই থাকবে,<br />
+          যে শুধু তার মা-কে proud করতে চায়।
         </p>
         <p class="body-text fade-up delay-2">
           "Thank you for being my home."

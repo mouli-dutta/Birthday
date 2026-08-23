@@ -132,7 +132,7 @@ function tapHeart() {
   }
 
   // Reveal message after 3 taps
-  if (heartTapCount >= 3) {
+  if (heartTapCount >= 1) {
     const revealText = document.getElementById('heart-reveal-text');
     const continueBtn = document.getElementById('page2-continue');
     revealText.classList.add('visible');
