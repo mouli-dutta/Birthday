@@ -417,22 +417,41 @@ function resetAll() {
 const musicBtn = document.getElementById('music-toggle');
 const bgMusic = document.getElementById('bg-music');
 
-musicBtn.addEventListener('click', () => {
-  toggleMusic();
-});
+function startMusic() {
+  if (musicPlaying) return;
 
-function toggleMusic() {
-  if (musicPlaying) {
-    bgMusic.pause();
-    musicBtn.classList.remove('playing');
-    musicBtn.querySelector('.music-icon').textContent = '♪';
-  } else {
-    bgMusic.volume = 0.4;
-    bgMusic.play().catch(() => {
-      // Autoplay blocked — that's fine
-    });
+  bgMusic.volume = 0.4;
+
+  bgMusic.play().then(() => {
+    musicPlaying = true;
     musicBtn.classList.add('playing');
     musicBtn.querySelector('.music-icon').textContent = '♫';
-  }
-  musicPlaying = !musicPlaying;
+  }).catch(() => {
+    // Browser blocked autoplay — wait for first user interaction
+  });
 }
+
+function stopMusic() {
+  bgMusic.pause();
+  musicPlaying = false;
+  musicBtn.classList.remove('playing');
+  musicBtn.querySelector('.music-icon').textContent = '♪';
+}
+
+function toggleMusic() {
+  musicPlaying ? stopMusic() : startMusic();
+}
+
+musicBtn.addEventListener('click', toggleMusic);
+
+// Try autoplay when page loads
+document.addEventListener('DOMContentLoaded', () => {
+  startMusic();
+});
+
+// If autoplay is blocked, start on the first interaction
+['click', 'touchstart', 'keydown'].forEach(event => {
+  document.addEventListener(event, () => {
+    if (!musicPlaying) startMusic();
+  }, { once: true });
+});
